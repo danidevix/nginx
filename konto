@@ -1,0 +1,32 @@
+server {
+  listen       80;
+  server_name  domain.com wwww.domain.com;
+  server_tokens off;
+
+  location ~* \.(?:ico|css|js|gif|jpeg|png|jpg|zip)$ {
+    expires 365d;
+    add_header Vary Accept-Encoding;
+    access_log off;
+  }
+
+  root   /home/konto/domain.com/;
+
+  location / {
+    add_header Access-Control-Allow-Origin '*';
+    #root   /home/konto/domain.com/;
+    index  index.html index.htm;
+  }
+  location /publication/book/file {
+    add_header Access-Control-Allow-Origin '*';
+    allow 127.0.0.1;
+
+    allow ip;
+    
+    deny all;
+    alias   /home/konto/domain.com/path/;
+    index  index.html index.htm;
+  }
+  location ~* \.(eot|ttf|woff)$ {
+    add_header Access-Control-Allow-Origin *;
+  }
+}
