@@ -1,5 +1,8 @@
 upstream kontol{
-  server kontol:port;
+  server kontol1:port;
+  server kontol2:port;
+  server kontol3:port;
+  server kontol5:port;
   }
 
 server {
